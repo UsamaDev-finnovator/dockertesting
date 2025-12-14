@@ -1,0 +1,56 @@
+"use client";
+
+import {
+  CircleCheckIcon,
+  InfoIcon,
+  Loader2Icon,
+  OctagonXIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
+import { useTheme } from "next-themes";
+import { Toaster as Sonner, type ToasterProps } from "sonner";
+
+const Toaster = ({ ...props }: ToasterProps) => {
+  const { theme = "system" } = useTheme();
+
+  return (
+    <Sonner
+      theme={theme as ToasterProps["theme"]}
+      position="top-center"
+      className="toaster group"
+      icons={{
+        success: (
+          <CircleCheckIcon className="w-5 h-5 text-green-500 dark:text-green-400" />
+        ),
+        info: <InfoIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />,
+        warning: (
+          <TriangleAlertIcon className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
+        ),
+        error: (
+          <OctagonXIcon className="w-5 h-5 text-red-500 dark:text-red-400" />
+        ),
+        loading: (
+          <Loader2Icon className="w-5 h-5 text-gray-500 dark:text-gray-300 animate-spin" />
+        ),
+      }}
+      style={
+        {
+          "--normal-bg": "var(--popover)", 
+          "--normal-text": "var(--popover-foreground)",
+          "--normal-border": "var(--border)",
+          "--border-radius": "0.75rem", 
+          "--shadow": "0 10px 25px rgba(0, 0, 0, 0.1)", 
+          "--padding": "0.75rem 1rem",
+        } as React.CSSProperties
+      }
+      toastOptions={{
+        duration: 5000, 
+        className:
+          "flex items-center gap-3 p-4 border rounded-xl shadow-md text-sm font-medium animate-slide-in-up",
+      }}
+      {...props}
+    />
+  );
+};
+
+export { Toaster };
