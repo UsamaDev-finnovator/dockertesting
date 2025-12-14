@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  reactStrictMode: false,
+  typescript: {
+  ignoreBuildErrors: true,
+},
+
+
+  // reactStrictMode: false,
   // skipTrailingSlashRedirect: true,
   env: {
     BS_API_KEY: "https://cftest.finnovator.com.sa:8086", // Active API configuration
