@@ -9,18 +9,12 @@ FROM base AS deps
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-# ------------------------
-# 2. Build application
-# ------------------------
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# ------------------------
-# 3. Production runtime
-# ------------------------
 FROM base AS runner
 WORKDIR /app
 
@@ -35,7 +29,6 @@ COPY --from=builder /app/public ./public
 
 RUN mkdir .next && chown nextjs:nodejs .next
 
-# Standalone output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
