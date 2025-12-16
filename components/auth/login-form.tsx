@@ -163,7 +163,7 @@ export function LoginForm({
                     name="username"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Username Usama </FormLabel>
+                        <FormLabel>Username </FormLabel>
                         <FormControl>
                           <Input placeholder="admin" {...field} />
                         </FormControl>
