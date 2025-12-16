@@ -69,7 +69,7 @@ export function LoginForm({
         body: JSON.stringify(values),
       });
 
-      const {data} = await response.json();
+      const { data } = await response.json();
 
       setSession(data.Token);
       // setUser(auth);
@@ -163,7 +163,7 @@ export function LoginForm({
                     name="username"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Usernameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee </FormLabel>
+                        <FormLabel>Username </FormLabel>
                         <FormControl>
                           <Input placeholder="admin" {...field} />
                         </FormControl>
